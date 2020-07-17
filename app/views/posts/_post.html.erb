@@ -1,0 +1,19 @@
+
+  <strong>Commenter:</strong>
+  <%= post.commenter %>
+</p>
+ 
+<p>
+  <strong>Post:</strong>
+  <%= post.body %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= post.phone %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Post', @post,
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
