@@ -1,0 +1,112 @@
+<p id="notice"><%= notice %></p>
+
+<%= stylesheet_link_tag "newsfeeds", media: "all" %>
+
+
+<h1 style="text-align:center">Your Total Newsfeeds</h1>
+
+
+
+
+
+<form class="form-inline my-2 my-lg-O" action="/search">
+  <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search"aria-label="Search">
+  <div style = "width:245px">
+  <button class="btn btn-online-success my-2 my-sm-O" type="Submit">Search</button>
+  </div>
+</form>
+<p>
+</p>
+
+
+<form class="form-inline my-2 my-lg-O" action="/search_comment">
+<!--   <input class="form-control mr-sm-2" type="text" placeholder="Search By Comments"aria-label="Search">
+ -->  <div style = "width:245px">
+  <button class="btn btn-online-success my-2 my-sm-O" type="Submit">Search News with comments only </button>
+  </div>
+</form>
+
+
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+h1{
+  background-color: lightgrey;
+  width: 300px;
+  border: 6px solid green;
+  padding: 50px;
+  margin: 20px;
+  text-align: center;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: white;
+}
+
+button:hover, a:hover {
+  color: green;
+  opacity: 0.8;
+}
+
+p {
+  font-size: 19px;
+}
+</style>
+</head>
+<body>
+
+
+
+  <% @newsfeeds.each do |newsfeed| %>
+
+
+  <h2 style="text-align:center">User Profile Feed</h2>
+
+  <div class="card">
+    <img src= style = "width:100px; height:60px; padding:10px">
+        <%= image_tag(newsfeed.cover_picture, style: 'width:100%') if newsfeed.cover_picture.attached?  %>
+    <p>Title: <%= newsfeed.title %> </p>
+    <p>Body : <%= newsfeed.body %> </p>
+    <h3>UserId : <%= newsfeed.user_id%> </h3>
+    
+    <p><button><%= link_to 'Show ', newsfeed %>
+    <%= link_to 'Edit ', edit_newsfeed_path(newsfeed) %>
+    <%= link_to 'Destroy ', newsfeed, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </button></p>
+    <hr size="2",length="100%"> 
+    <% end %>
+  </div>
+
+  </div>
+</body>
+</html>
+<%= link_to ' New Newsfeed ', new_newsfeed_path %>
+
