@@ -1,0 +1,11 @@
+
+<%= stylesheet_link_tag "pages", media: "all" %>
+
+<h1>Want to Enter your Newsfeed ? SignUp Now</h1>
+
+<% if current_user.present? %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  <%= link_to 'Check your TimeLine', newsfeeds_path %> 
+<% else %>
+  <%= link_to 'Login', new_user_session_path %>
+<%end %>

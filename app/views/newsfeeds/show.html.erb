@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @newsfeed.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @newsfeed.body %>
+</p>
+<div style = "width:100px; height:70px">
+<%= link_to image_tag(@newsfeed.cover_picture, style: 'width:100%', padding: '200px', margin: '10px'),newsfeeds_path %>
+</div>
+
+
+<h2>Comments</h2>
+<% @newsfeed.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @newsfeed, @newsfeed.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_newsfeed_path(@newsfeed) %> |
+<%= link_to 'Back', newsfeeds_path %>
